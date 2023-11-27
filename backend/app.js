@@ -1,8 +1,11 @@
 const express=require("express")
 const app=express()
-app.get("/",(req,res)=>{
-return res.send("<h1>Hello World</h1>")
-})
-app.listen(5000,()=>{
+const dotenv=require("dotenv")
+const {router}=require("./routes/routes.js")
+const cors = require('cors');
+dotenv.config()
+app.use(cors)
+app.use("/recipie",router)
+app.listen(process.env.PORT,()=>{
     console.log("server running on port 5000")
 })
